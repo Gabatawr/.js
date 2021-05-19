@@ -8,10 +8,12 @@ import gmedia   from 'gulp-group-css-media-queries';
 import cleancss from 'gulp-clean-css';
 import imagemin from 'gulp-imagemin';
 import sync     from 'browser-sync';
+import beautify from 'gulp-beautify';
 
 export const html = () => {
     return gulp.src(['dev/*.html', '!dev/_*.html'])
         .pipe(include())
+        .pipe(beautify.html())
         .pipe(gulp.dest('dist'))
         .pipe(sync.stream())
 }

@@ -1,3 +1,4 @@
+/* Classwork 1 */
 let count = 0;
 let counterText = document.querySelector(".counterText");
 
