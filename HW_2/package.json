@@ -1,0 +1,14 @@
+{
+  "type": "module",
+  "name": "hw_2",
+  "description": "![screen](https://github.com/Gabatawr/.js/raw/main/HW_1/Screenshot.png)",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}
