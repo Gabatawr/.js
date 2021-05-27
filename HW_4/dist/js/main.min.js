@@ -1,6 +1,6 @@
 // !@include('')
 const myRun = (foo, gname, begin, end, step) => {
-    console.group(gname);
+    console.groupCollapsed(gname);
     let b = begin,
         e = end,
         s = step;
@@ -58,7 +58,7 @@ const greatestDigit = (num) => {
     return a > b ? a : b;
 };
 
-console.group("Task 3");
+console.groupCollapsed("Task 3");
 let str = "";
 for (let i = 41; i <= 48; i++) {
     console.log(`greatestDigit(${i}) = ${greatestDigit(i)}`);
@@ -78,12 +78,41 @@ const isSimple = (num, div = 3) => {
     return isSimple(num, div + 2);
 };
 
-console.group("Task 4");
+console.groupCollapsed("Task 4");
 for (let i = 1; i <= 8; i++) {
     console.log(`isSimple(${i}) = ${isSimple(i)}`);
 }
 console.groupEnd();
 
 //#endregion Task 4
-// 5. Написать функцию для вывода всех множителей переданного числа в возрастающем порядке. Например: число 18 – множители 2 * 3 * 3.
-// 6. Написать функцию, которая возвращает число Фибоначчи по переданному порядковому номеру. Числа Фибоначчи: 1, 1, 2, 3, 5, 8, 13... Ряд основывается на том, что каждое число равно сумме двух предыдущих чисел. Например: порядковый номер 3 – число 2, порядковый номер 6 – число 8.
+
+//#region Task 5
+// 5. Написать функцию для вывода всех множителей переданного числа в возрастающем порядке.
+//    Например: число 18 – множители 2 * 3 * 3.
+
+const Divisors = (num, i = 1) => {
+    return num === i
+        ? [i]
+        : num % i === 0
+        ? [i].concat(Divisors(num, i + 1))
+        : Divisors(num, i + 1);
+};
+
+console.group("Task 5");
+let num = 2;
+for (let i = num; i <= num * 5; i += num) {
+    console.log(`Divisors(${i}) = ${Divisors(i)}`);
+}
+console.groupEnd();
+
+//#endregion Task 5
+
+//#region Task 6
+// 6. Написать функцию, которая возвращает число Фибоначчи по переданному порядковому номеру.
+//    Числа Фибоначчи: 1, 1, 2, 3, 5, 8, 13...
+//    Ряд основывается на том, что каждое число равно сумме двух предыдущих чисел.
+//    Например: порядковый номер 3 – число 2, порядковый номер 6 – число 8.
+
+//
+
+//#endregion Task 6
