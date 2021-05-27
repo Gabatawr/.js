@@ -90,18 +90,18 @@ console.groupEnd();
 // 5. Написать функцию для вывода всех множителей переданного числа в возрастающем порядке.
 //    Например: число 18 – множители 2 * 3 * 3.
 
-const Divisors = (num, i = 1) => {
+const divisors = (num, i = 1) => {
     return num === i
         ? [i]
         : num % i === 0
-        ? [i].concat(Divisors(num, i + 1))
-        : Divisors(num, i + 1);
+        ? [i].concat(divisors(num, i + 1))
+        : divisors(num, i + 1);
 };
 
-console.group("Task 5");
+console.groupCollapsed("Task 5");
 let num = 2;
 for (let i = num; i <= num * 5; i += num) {
-    console.log(`Divisors(${i}) = ${Divisors(i)}`);
+    console.log(`divisors(${i}) = ${divisors(i)}`);
 }
 console.groupEnd();
 
@@ -113,6 +113,13 @@ console.groupEnd();
 //    Ряд основывается на том, что каждое число равно сумме двух предыдущих чисел.
 //    Например: порядковый номер 3 – число 2, порядковый номер 6 – число 8.
 
-//
+const fib = (num) => {
+    return num <= 1 ? num : fib(num - 1) + fib(num - 2);
+};
 
+console.groupCollapsed("Task 6");
+for (let i = 13; i <= 19; i++) {
+    console.log(`fib(${i}) = ${fib(i)}`);
+}
+console.groupEnd();
 //#endregion Task 6
