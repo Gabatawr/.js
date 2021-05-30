@@ -96,3 +96,69 @@ for (let i = 0, r = 255, g = 127, b = 0; i < abc.length; i++) {
 }
 
 //#endregion Task 1
+
+//#region Task 3
+
+class EmployeeList {
+    constructor(props) {
+        this.list = props.list;
+        this.element = props.element;
+
+        this._listElement;
+        this._createList();
+        this._createCode();
+    }
+    _createList() {
+        this._listElement = createElement(
+            this.element,
+            ['ul', 't2__list'],
+            'margin: 0; padding: 0; list-style: none; font-size: 20px;'
+        );
+
+        for (let y of this.list) {
+            createElement(
+                this._listElement,
+                ['li', 't2__item'],
+                'margin-left: 32px;'
+            ).textContent = y;
+        }
+    }
+    _createCode() {
+        createElement(
+            this.element,
+            ['pre', 't2__code'],
+            'font-family: consolas; overflow: auto; border-radius: 21px; background: #efebff; margin: 24px; padding: 24px; font-size: 16px;'
+        ).textContent = this.getHTML()
+            .replaceAll('<li', '\n\t<li')
+            .replaceAll('</ul>', '\n</ul>\n');
+    }
+    getHTML() {
+        return this.element.innerHTML;
+    }
+}
+
+const t2 = createElement(main, ['section', 't2'], 'font-size: 22px;');
+
+let employees = [
+    'Harry Brooks',
+    'Ross Rachel',
+    'Bruce Edwards',
+    'Cook Christopher',
+    'Carolyn Perez',
+    'Morgan Thomas',
+    'Albert Baker',
+    'Randy Sara',
+    'Reed Moore',
+    'Larry Chris',
+];
+
+let employeeList = new EmployeeList({
+    list: employees,
+    element: createElement(
+        t2,
+        ['div', 't2__box'],
+        'margin-top: 18px; padding: 24px 0; white-space: pre; background-color: #e1e1ff;'
+    ),
+});
+
+//#endregion Task 3
