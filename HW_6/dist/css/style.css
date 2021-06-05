@@ -1,0 +1,123 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+ul[class] {
+  list-style: none;
+  font-size: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.main {
+  flex: 1 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer {
+  flex: 0 0 auto;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.news {
+  margin-left: 16px;
+  width: 450px;
+  background-color: cornflowerblue;
+}
+
+.news__item {
+  padding: 4px 8px;
+}
+
+.news__title {
+  font-size: 16px;
+}
+
+.news__date {
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.news__content {
+  margin-top: 14px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.news ul,
+.news__tag-list {
+  margin-top: 12px;
+  list-style: inside;
+}
+
+.news li,
+.news__tag-item {
+  float: left;
+  font-size: 14px;
+  padding-right: 4px;
+}
+
+.news li::marker,
+.news__tag-item::marker {
+  content: '#';
+}
