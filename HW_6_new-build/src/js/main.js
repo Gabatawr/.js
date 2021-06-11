@@ -1,7 +1,6 @@
-// !@include('../../node_modules/lorem-ipsum/dist/index.js');
 import { LoremIpsum } from 'lorem-ipsum';
 
-//#region lorem-config
+// #region lorem-config
 
 const lorem = new LoremIpsum({
   sentencesPerParagraph: {
@@ -14,8 +13,9 @@ const lorem = new LoremIpsum({
   },
 });
 
-//#endregion lorem-config
+// #endregion lorem-config
 
+/* eslint no-underscore-dangle: ["error", { "allowAfterThis": true }] */
 class News {
   constructor(props) {
     this.template = props.template;
@@ -36,13 +36,23 @@ class News {
     this.tagList = props.tags;
   }
 
-  //#region elements
+  // #region node
+
+  _nodeDefault() {
+    return this.template.content
+      .querySelector(`.${this.pref}item`)
+      .cloneNode(true);
+  }
+
+  // #endregion node
+
+  // #region elements
 
   _elRefresh(elName) {
     for (let i = 0; i < this.node.childNodes.length; i++) {
       if (
-        this.node.childNodes[i].nodeName !== '#text' &&
-        this.node.childNodes[i].className == this.pref + elName
+        this.node.childNodes[i].nodeName !== '#text'
+        && this.node.childNodes[i].className === this.pref + elName
       ) {
         this.node.childNodes[i].textContent = this[elName];
         break;
@@ -50,11 +60,12 @@ class News {
     }
   }
 
-  //#region title
+  // #region title
 
   get title() {
     return this._title;
   }
+
   set title(value) {
     if (value !== undefined) {
       this._title = value;
@@ -62,9 +73,9 @@ class News {
     }
   }
 
-  //#endregion title
+  // #endregion title
 
-  //#region date
+  // #region date
 
   get date() {
     let daysAgo = Math.floor(
@@ -85,6 +96,7 @@ class News {
     }
     return ret.join('.');
   }
+
   set date(value) {
     if (value !== undefined) {
       this._date = new Date(value); // TODO: validate date
@@ -92,9 +104,9 @@ class News {
     }
   }
 
-  //#endregion date
+  // #endregion date
 
-  //#region content
+  // #region content
 
   get content() {
     return this._content;
@@ -106,23 +118,9 @@ class News {
     }
   }
 
-  //#endregion content
+  // #endregion content
 
-  //#region tagList
-
-  //#endregion elements
-
-  //#region node
-
-  _nodeDefault() {
-    return this.template.content
-      .querySelector('.' + this.pref + 'item')
-      .cloneNode(true);
-  }
-
-  //#endregion node
-
-
+  // #region tagList
 
   _tagItemInit(ul, tag) {
     let li = document.createElement('li');
@@ -170,7 +168,30 @@ class News {
     }
   }
 
-  //#endregion tagList
+  // #endregion tagList
+
+  // #endregion elements
+}
+
+const dayDecrement = (date) => {
+  let d = new Date(date);
+
+  if (d.getDate() - 1 === 0) {
+    if (d.getMonth() - 1 === 0) {
+      d.setYear(d.getYear() - 1);
+      d.setMonth(12);
+      d.setDate(31);
+    }
+    else {
+      d.setMonth(d.getMonth() - 1);
+      d.setDate(new Date(d.getYear(), d.getMonth(), 0).getDate());
+    }
+  }
+  else {
+    d.setDate(d.getDate() - 1);
+  }
+
+  return new Date(d);
 }
 
 const newsBlock = document.querySelector('.news');
@@ -180,18 +201,26 @@ let newsList = [
   new News({
     template: newsTemplate,
     title: 'What is Lorem Ipsum?',
-    date: '2021-06-04',
+    date: new Date().toDateString(),
     content:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     tags: ['lorem', 'ipsum', 'text'],
-  }),
-  new News({
-    template: newsTemplate,
-    title: lorem.generateSentences(1),
-    date: '2021-06-04',
-    content: lorem.generateParagraphs(1),
-    tags: lorem.generateWords(Math.floor(Math.random()) * 10).split(' '),
-  }),
+  })
 ];
+
+const NEWS_SIZE = Math.floor(Math.random() * 31);
+for (let i = 0, date = new Date(); i < NEWS_SIZE; i++) {
+  date = dayDecrement(date);
+
+  newsList.push(
+    new News({
+      template: newsTemplate,
+      title: lorem.generateSentences(1),
+      date: date.toDateString(),
+      content: lorem.generateParagraphs(1),
+      tags: lorem.generateWords(Math.floor(Math.random() * 5)).split(' '),
+    })
+  );
+}
 
 newsList.forEach((news) => newsBlock.appendChild(news.node));

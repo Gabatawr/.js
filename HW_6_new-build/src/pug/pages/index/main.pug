@@ -1,0 +1,12 @@
+- const pref = 'news__'
+
+main(class="main")
+  section(class="news wrapper")
+    template(class=`${pref}item-template`)
+      div(class=`${pref}item`)
+        h2(class=`${pref}title`)
+        div(class=`${pref}date`)
+        p(class=`${pref}content`)
+
+      ul(class=`${pref}tag-list`)
+        li(class=`${pref}tag-item`)

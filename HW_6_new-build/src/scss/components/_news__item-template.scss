@@ -1,0 +1,50 @@
+.news {
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+  margin-left: 16px;
+
+  &__item {
+    margin: 6px 0;
+    padding: 0 8px 8px;
+
+    background-color: rgb(218, 218, 218);
+  }
+
+  &__title {
+    font-size: 16px;
+  }
+
+  &__date {
+    margin-top: 10px;
+
+    font-size: 12px;
+  }
+
+  &__content {
+    margin-top: 14px;
+
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  ul,
+  &__tag-list {
+    margin-top: 12px;
+    padding: 0;
+
+    list-style: inside;
+  }
+
+  li,
+  &__tag-item {
+    float: left;
+    padding-right: 4px;
+
+    font-size: 14px;
+
+    &::marker {
+      content: '#';
+    }
+  }
+}
